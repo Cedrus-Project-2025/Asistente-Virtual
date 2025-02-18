@@ -1,0 +1,170 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Rubik:wght@300..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto Slab", serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(#EEEEFF, #C8C7FF);
+}
+
+.chatbot-popup {
+    width: 420px;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 15px;
+    position: relative; /* 🔹 Agregado para el posicionamiento del footer */
+    box-shadow: 0 0 128px rgba(0, 0, 0, 0.1),
+                0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+
+.chat-header { 
+    display: flex;
+    align-items: center;
+    background: #5350c4;
+    padding: 15px 22px;
+    justify-content: space-between;
+}
+
+/* Configurar el texto del título en la parte de arriba */
+.chat-header .header-inf {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.header-inf .chatbot-logo {
+    width: 35px;
+    height: 35px;
+    padding: 6px;
+    fill: #5350C4;
+    background: #fff;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.header-inf .logo-text {
+    color: #fff;
+    font-size: 1.31rem;
+    font-weight: 600;
+}
+
+.chat-header #close-chatbot {
+    border: none;
+    color: #fff;
+    height: 40px;
+    width: 40px;
+    font-size: 1.9rem;
+    margin-top: -10px;
+    padding-top: 2px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: none;
+    transition: 0.2s ease;
+}
+
+/* 🔹 Corrección en el hover */
+.chat-header #close-chatbot:hover {
+    background: #3d39ac;
+}
+
+.chat-body {
+    padding: 25px 22px;
+    display: flex;
+    gap: 20px;
+    height: 460px;
+    overflow-y: auto;
+    flex-direction: column;
+    padding-bottom: 82px; /* 🔹 Mejor que margin-bottom */
+}
+
+.chat-body .message {
+    display: flex;
+    gap: 11px;
+    align-items: center;
+}
+
+.chat-body .message .bot-avatar {
+    width: 35px;
+    height: 35px;
+    padding: 6px;
+    margin-bottom: 2px;
+    align-self: flex-start; /* 🔹 Asegura que siempre esté alineado a la izquierda */
+    background: #5350C4;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.chat-body .user-message {
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.chat-body .message .message-text{
+    padding: 12px 16px;
+    max-width: 75%;
+    font-size: 0.95rem;
+    background: #f2f2f2;
+}
+
+.chat-body .bot-message .message-text{
+    background: #f2f2f2;
+    border-radius: 13px 13px 13px 3px;
+}
+
+.chat-body .user-message .message-text{
+    color: #fff;
+    background: #5350C4;
+    border-radius: 13px 13px 3px 13px;
+}
+
+.chat-body .bot-message .thinking-indicator {
+    display: flex;
+    gap: 5px;
+    padding: 10px;
+    background: #f2f2f2;
+    border-radius: 13px 13px 13px 3px;
+    min-width: 40px; /* 🔹 Mantiene el tamaño del mensaje */
+}
+
+.chat-body .bot-message .thinking-indicator .dot {
+    height: 7px;
+    width: 7px;
+    opacity: 0.7;
+    border-radius: 50%;
+    background: #6f6bc2;
+    animation: dotPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+    0%, 44% {
+        transform: translateY(0);
+    }
+
+    28% {
+        opacity: 0.4;
+        transform: translateY(-4px);
+    }
+
+    28% {
+        opacity: 0.2;
+    }
+}
+
+/* 🔹 Footer corregido */
+.chat-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
