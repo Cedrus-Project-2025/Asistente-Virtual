@@ -1,17 +1,13 @@
-// Select the chat body where messages are displayed.
+// Seleccionar elementos del DOM
 const chatBody = document.querySelector(".chat-body");
 const messageInput = document.querySelector(".message-input");
-const sendMessageButton = document.querySelector("#send-button");
-
-const API_URL = {
-    
-}
+const sendMessageButton = document.querySelector("#send-message");
 
 const userData = {
     message: null
 };
 
-// Create a message element with dynamic classes and return it.
+// Crear un mensaje dinámico con clases y devolverlo
 const createMessageElement = (content, classes) => {
     const div = document.createElement("div");
     div.classList.add("message", classes);
@@ -19,28 +15,30 @@ const createMessageElement = (content, classes) => {
     return div;
 };
 
+// Generar respuesta del bot (función a desarrollar)
 const generateBotResponse = () => {
+    // Aquí puedes agregar la lógica para que el bot genere respuestas
+};
 
-}
-
-// Handle outgoing user messages.
+// Manejar mensajes salientes del usuario
 const handleOutgoingMessage = (e) => {
     e.preventDefault();
     userData.message = messageInput.value.trim();
 
-    // Clear the input after sending.
+    if (!userData.message) return; // Evitar mensajes vacíos
+
+    // Limpiar el input después de enviar
     messageInput.value = "";
 
-    // Create and display the user message.
+    // Crear y mostrar el mensaje del usuario
     const messageContent = `<div class="message-text">${userData.message}</div>`;
     const outgoingMessageDiv = createMessageElement(messageContent, "user-message");
     chatBody.appendChild(outgoingMessageDiv);
 
-    // Simulate bot response with a thinking indicator after a delay.
+    // Simular respuesta del bot con un indicador de "pensando..."
     setTimeout(() => {
         const botMessageContent = `
-            <svg class="bot-avatar" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="35"
-                viewBox="0 0 512 512" xml:space="preserve">
+            <svg class="bot-avatar" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 512 512">
                <g>
                    <circle style="fill:#55C1B4;" cx="256" cy="100.174" r="22.261"/>
                    <rect x="456.348" y="233.739" style="fill:#55C1B4;" width="44.522" height="133.565"/>
@@ -62,19 +60,18 @@ const handleOutgoingMessage = (e) => {
             </div>
         `;
         const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message");
-        // Append the bot's message (incomingMessageDiv) rather than the user message again.
         chatBody.appendChild(incomingMessageDiv);
         generateBotResponse();
     }, 600);
 };
 
-// Listen for keydown events on the input field.
+// Capturar el evento "Enter" en el input para enviar mensajes
 messageInput.addEventListener("keydown", (e) => {
-    const userMessage = e.target.value.trim();
-    if (e.key === "Enter" && userMessage) {
+    if (e.key === "Enter" && messageInput.value.trim()) {
         handleOutgoingMessage(e);
     }
 });
 
-// Listen for click events on the send message button.
+// Manejar el botón de enviar mensaje
 sendMessageButton.addEventListener("click", (e) => handleOutgoingMessage(e));
+
