@@ -7,17 +7,45 @@ const userData = {
     message: null
 };
 
+// api setup
+const API_KEY = "AIzaSyCOTlzz1vt4yrV4B1QnaqldmPmq5LD8SoI"
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+
 // Crear un mensaje dinámico con clases y devolverlo
-const createMessageElement = (content, classes) => {
+const createMessageElement = (content, ...classes) => {
     const div = document.createElement("div");
-    div.classList.add("message", classes);
+    div.classList.add("message", ...classes);
     div.innerHTML = content;
     return div;
 };
 
 // Generar respuesta del bot (función a desarrollar)
-const generateBotResponse = () => {
-    // Aquí puedes agregar la lógica para que el bot genere respuestas
+const generateBotResponse = async (incomingMessageDiv) => {
+    const messageElement = incomingMessageDiv.querySelector(".message-text");
+
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify({
+            contents: [{
+                parts: [{text: userData.message}]
+            }]
+        })
+    }
+
+    try {
+        const response = await fetch(API_URL, requestOptions);
+        const data = await response.json();
+        if(!response.ok) throw new Error(data.error.message)
+
+        const apiResponseText = data.candidates[0].content.parts[0].text.trim();
+        messageElement.innerText = apiResponseText;
+
+        console.log(data);
+    }   catch (error) {
+        console.log(error);
+    }
 };
 
 // Manejar mensajes salientes del usuario
@@ -61,7 +89,7 @@ const handleOutgoingMessage = (e) => {
         `;
         const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message");
         chatBody.appendChild(incomingMessageDiv);
-        generateBotResponse();
+        generateBotResponse(incomingMessageDiv);
     }, 600);
 };
 
