@@ -6,11 +6,15 @@
     <title>Chatbot</title>
     
     <!-- Importar Material Symbols Rounded -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
-    
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
     <link rel="stylesheet" href="chatbot.css">
 </head>
 <body>
+    <button id="chatbot-toggler">
+        <span class="material-symbols-rounded">mode_comment</span>
+        <span class="material-symbols-rounded">close</span>
+    </button>
+
     <div class="chatbot-popup">
         <!-- Chatbot Header -->
         <div class="chat-header">
@@ -18,7 +22,9 @@
                 <h2 class="logo-text">Asistente Virtual</h2>
             </div>
             <button id="close-chatbot">
-                <span class="material-symbols-rounded">keyboard_arrow_down</span>
+                <span class="material-symbols-rounded">
+                    keyboard_arrow_down
+                    </span>
             </button>
         </div>
 

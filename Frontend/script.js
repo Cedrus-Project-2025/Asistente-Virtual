@@ -2,6 +2,8 @@
 const chatBody = document.querySelector(".chat-body");
 const messageInput = document.querySelector(".message-input");
 const sendMessageButton = document.querySelector("#send-message");
+const chatbotToggler = document.querySelector("#chatbot-toggler");
+const closeChatbot = document.querySelector("#close-chatbot")
 
 const userData = {
     message: null
@@ -38,13 +40,19 @@ const generateBotResponse = async (incomingMessageDiv) => {
         const response = await fetch(API_URL, requestOptions);
         const data = await response.json();
         if(!response.ok) throw new Error(data.error.message)
-
-        const apiResponseText = data.candidates[0].content.parts[0].text.trim();
+        
+            // extract and display bot's response text
+        const apiResponseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, "$1").trim();
         messageElement.innerText = apiResponseText;
 
         console.log(data);
     }   catch (error) {
         console.log(error);
+        messageElement.innerText = error.message;
+        messageElement.style.color = "#ff0000";
+    }   finally {
+        incomingMessageDiv.classList.remove("thinking");
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth"});
     }
 };
 
@@ -62,6 +70,7 @@ const handleOutgoingMessage = (e) => {
     const messageContent = `<div class="message-text">${userData.message}</div>`;
     const outgoingMessageDiv = createMessageElement(messageContent, "user-message");
     chatBody.appendChild(outgoingMessageDiv);
+    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth"});
 
     // Simular respuesta del bot con un indicador de "pensando..."
     setTimeout(() => {
@@ -89,6 +98,7 @@ const handleOutgoingMessage = (e) => {
         `;
         const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message");
         chatBody.appendChild(incomingMessageDiv);
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth"});
         generateBotResponse(incomingMessageDiv);
     }, 600);
 };
@@ -102,4 +112,6 @@ messageInput.addEventListener("keydown", (e) => {
 
 // Manejar el botón de enviar mensaje
 sendMessageButton.addEventListener("click", (e) => handleOutgoingMessage(e));
+chatbotToggler.addEventListener("click",() => document.body.classList.toggle("show-chatbot"));
+closeChatbot.addEventListener("click", () => document.body.classList.remove("show-chatbot")); 
 
