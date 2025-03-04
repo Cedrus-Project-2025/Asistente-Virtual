@@ -1,0 +1,73 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    
+    <!-- Importar Material Symbols Rounded -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+    <link rel="stylesheet" href="chatbot.css">
+</head>
+<body>
+    <button id="chatbot-toggler">
+        <span class="material-symbols-rounded">mode_comment</span>
+        <span class="material-symbols-rounded">close</span>
+    </button>
+
+    <div class="chatbot-popup">
+        <!-- Chatbot Header -->
+        <div class="chat-header">
+            <div class="header-info">
+                <h2 class="logo-text">Asistente Virtual</h2>
+            </div>
+            <button id="close-chatbot">
+                <span class="material-symbols-rounded">
+                    keyboard_arrow_down
+                    </span>
+            </button>
+        </div>
+
+        <!-- Chatbot Body -->
+        <div class="chat-body">
+            <div class="message bot-message thinking">
+                <!--LOGO -->
+                <svg class="bot-avatar" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="35"
+                viewBox="0 0 512 512" xml:space="preserve">
+               <g>
+                   <circle style="fill:#55C1B4;" cx="256" cy="100.174" r="22.261"/> <!-- 🔹 Color más fuerte -->
+                   <rect x="456.348" y="233.739" style="fill:#55C1B4;" width="44.522" height="133.565"/>
+                   <rect x="11.13" y="233.739" style="fill:#55C1B4;" width="44.522" height="133.565"/>
+               </g>
+               <polygon style="fill:#C8EBE3;" points="167.699,166.957 100.174,166.957 55.652,166.957 55.652,434.087 456.348,434.087 456.348,166.957 "/>
+               <g>
+                   <circle style="fill:#55C1B4;" cx="166.957" cy="278.261" r="22.261"/>
+                   <circle style="fill:#55C1B4;" cx="345.043" cy="278.261" r="22.261"/>
+               </g>
+               <path style="fill:#3B629D;" d="M256,378.435c30.736,0,55.652-24.917,55.652-55.652H200.348C200.348,353.518,225.264,378.435,256,378.435z"/>
+           </svg>
+           
+                <div class="message-text">¡Hola! ¿En qué puedo ayudarte hoy? 😊</div>
+            </div>
+        </div>
+
+        <!-- Chatbot Footer !-->
+        <div class="chat-footer">
+            <form action="#" class="chat-form">
+                <textarea placeholder="Escribe un mensaje..." class="message-input" required></textarea>
+                <div class="chat-controls">
+                    <button type="submit" id="send-message">
+                        <span class="material-symbols-rounded">arrow_upward</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--script for emoji picker --> 
+    <script src="https://cdn.jsdelivr.net/npm/@emoji-mart/react/dist/emoji-mart.js"></script>
+
+     <!--// linking custom script //-->
+    <script src="script.js"></script>
+</body>
+</html>
