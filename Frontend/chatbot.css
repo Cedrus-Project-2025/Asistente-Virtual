@@ -51,18 +51,23 @@ body.show-chatbot #chatbot-toggler span:last-child{
 
 /* Contenedor del chatbot */
 .chatbot-popup {
-    width: 420px;
+    width: 420px; /* Tamaño fijo para escritorio */
+    max-width: 90vw; /* Se adapta en pantallas pequeñas */
+    height: 500px; /* Tamaño fijo para que no se alargue */
+    max-height: 90vh; /* Se ajusta en pantallas pequeñas */
     background: #fff;
-    overflow: hidden;
+    overflow: hidden;  /* Evita que crezca */
     border-radius: 20px;
     position: fixed;
     right: 35px;
-    bottom: 90px;
+    bottom: clamp(10px, 5vw, 60px);
     opacity: 0;
     transform-origin: bottom right;
     pointer-events: none;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
 }
 
 body.show-chatbot .chatbot-popup{
@@ -96,15 +101,26 @@ body.show-chatbot .chatbot-popup{
 
 /* Cuerpo del chat */
 .chat-body {
+    flex: 1; /* Mantiene el tamaño sin crecer */
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    height: 400px;
-    overflow-y: auto;
+    overflow-y: auto; /* Agrega scroll si hay demasiados mensajes */
     background: #f9f9ff;
     scrollbar-width: thin;
     scrollbar-color: #ccccf5 transparent;
+}
+
+/* 📌 Media Queries para móviles */
+@media (max-width: 500px) {
+    .chatbot-popup {
+        width: 95vw;  /* Se adapta a la pantalla */
+        height: 80vh; /* Se ajusta en teléfonos */
+        right: 10px;
+        left: 10px;
+        bottom: 40px;
+    }
 }
 
 /* Estilo de los mensajes */
