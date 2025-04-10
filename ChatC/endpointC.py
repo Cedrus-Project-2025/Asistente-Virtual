@@ -27,7 +27,7 @@ class Pregunta(Resource):
                 "respuesta": respuesta
             }
             
-            return {"status": "ok", "mensaje": "Respuesta enviada"}, 200
+            return {"status": "ok", "mensaje": "Respuesta enviada",'resultados':resultado}, 200
 
         except Exception as e:
             return {"status": "error", "mensaje": str(e)}, 500
