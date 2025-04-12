@@ -4,15 +4,11 @@ import json
 from flask import Flask
 from flask_restful import Api
 
-from endpointC import Pregunta
+from Scripts.Endpoints.pregunta import Pregunta
 sys.stdout = sys.stderr
 
 app = Flask(__name__)
 api = Api(app)
-
-# Variable global para guardar configuraciones
-configuraciones = {}
-
 
 
 # =============== IMPLEMENTAR CON ENDPOINT DAMARIS

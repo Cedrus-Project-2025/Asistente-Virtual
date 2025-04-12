@@ -1,3 +1,7 @@
+# ========== Comando para crear y levantar docker
+# clear; docker build -t cedrus-chat .; docker run --name CedrusChat -p 3000:3000 cedrus-chat
+# ========== 
+
 FROM python:3.13-alpine
 
 WORKDIR /app
@@ -7,9 +11,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiar el resto de los archivos de la aplicación
-COPY app.py .
-COPY endpointC.py .
-COPY modelo_respuestas.py .
+COPY . .
 
 # Crear un archivo configs.json vacío que será llenado en tiempo de ejecución
 RUN echo "{}" > configs.json

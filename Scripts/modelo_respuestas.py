@@ -10,6 +10,7 @@ class ModeloRespuesta:
             "Content-Type": "application/json"
         }
 
+    # =============== METODOS PUBLICOS ===============
     def procesar_pregunta(self, pregunta):
         # Buscar si alguna palabra en la pregunta coincide con una tabla
         tabla_relacionada = self.buscar_tabla_relacionada(pregunta)

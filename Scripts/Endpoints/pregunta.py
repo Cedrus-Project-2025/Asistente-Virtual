@@ -1,13 +1,14 @@
-import requests
-import json
+import json, os
 from flask import request
 from flask_restful import Resource
-from modelo_respuestas import ModeloRespuesta
+from ..modelo_respuestas import ModeloRespuesta
 
 
 class Pregunta(Resource):
     def __init__(self):
-        with open("configs.json", "r") as file:
+        self.location_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+
+        with open(os.path.join(self.location_path,'Files','configs.json'), "r") as file:
             config = json.load(file)
         self.modelo = ModeloRespuesta(config)
 
