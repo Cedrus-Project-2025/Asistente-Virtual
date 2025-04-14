@@ -1,5 +1,5 @@
 # ========== Comando para crear y levantar docker
-# clear; docker build -t cumbres-chat .; docker run --name CumbresChat -p 3000:3000 cumbres-chat
+# clear; docker build -t cumbres-chat .; docker run --name CumbresChat -p 10000:10000 cumbres-chat
 # ========== 
 
 # Imagen base de Python
