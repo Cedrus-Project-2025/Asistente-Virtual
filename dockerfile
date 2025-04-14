@@ -2,19 +2,20 @@
 # clear; docker build -t cumbres-chat .; docker run --name CumbresChat -p 3000:3000 cumbres-chat
 # ========== 
 
-FROM python:3.13-alpine
+# Imagen base de Python
+FROM python:3.13-slim
 
+# Establecer directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar los archivos de requirements primero para aprovechar la caché de Docker
-COPY requirements.txt .
+# Copiar los archivos del proyecto al contenedor
+COPY . /app
+
+# Instalar dependencias desde requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar el resto de los archivos de la aplicación
-COPY . .
-
-# Exponer el puerto en el que corre la aplicación
+# Exponer el puerto en el que corre Flask
 EXPOSE 10000
 
-# Comando para iniciar la aplicación
+# Ejecutar la aplicación
 CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:10000", "app:app"]
