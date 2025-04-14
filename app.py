@@ -40,9 +40,3 @@ api = Api(app)
 # Registramos el recurso usando una función factory
 api.add_resource(Pregunta, '/pregunta')
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=3000)
-
-
-
-
