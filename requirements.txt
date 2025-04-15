@@ -1,3 +1,5 @@
 flask
 flask-restful
 requests
+gunicorn
+python-dotenv
