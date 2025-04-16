@@ -2,12 +2,16 @@ import requests
 from dotenv import load_dotenv
 import os
 
+Base_dir = os.path.dirname(os.path.dirname(__file__))
+
 class ModeloRespuesta:
     def __init__(self, configuraciones):
-       
-        load_dotenv()
         
-        api_gemini = os.getenv("GEMINI_API_BASE")
+        dotenv_path = os.path.join(Base_dir, 'env.env')
+        load_dotenv(dotenv_path)
+
+        api_gemini = os.getenv('GEMINI_API_BASE')
+
         self.api_key = configuraciones.get('api_key')
         self.prompt = configuraciones.get('prompt', 'Responde de forma clara y concisa')
         self.tablas_contexto = configuraciones.get('tablas', [])  # Lista de diccionarios
@@ -15,6 +19,7 @@ class ModeloRespuesta:
         self.headers = {
             "Content-Type": "application/json"
         }
+        print(api_gemini)
     def __instrucciones_sospechosas(self, pregunta):
         patrones = [
             "ignora", "haz caso", "responde solo", "actúa como", 
