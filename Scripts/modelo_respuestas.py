@@ -7,7 +7,7 @@ Base_dir = os.path.dirname(os.path.dirname(__file__))
 class ModeloRespuesta:
     def __init__(self, configuraciones):
         
-        dotenv_path = os.path.join(Base_dir, 'env.env')
+        dotenv_path = os.path.join(Base_dir, '.env')
         load_dotenv(dotenv_path)
 
         api_gemini = os.getenv('GEMINI_API_BASE')
