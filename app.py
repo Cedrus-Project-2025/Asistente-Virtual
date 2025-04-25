@@ -30,7 +30,7 @@ try:
     if response_obj.status_code == 200:
         # Paso 3: Ahora sí convertimos a JSON
         response = response_obj.json()
-        configuraciones["proyectos"] = response.get('proyectos', None)
+        configuraciones["proyectos"] = response.get('tablas', None)
         configuraciones["api_key"]   = response.get('api_key', None)
         configuraciones["prompt"]    = response.get('prompt', None)
         
